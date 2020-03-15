@@ -2,32 +2,145 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hirozawa</title>
     <script src="js/three.min.js"></script>
     <script src="js/ThreeHelper.js"></script>
     <script src="js/kitchen.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            border-collapse: collapse;
+            border: 1px solid lightgray;
+            width: 100%;
+        }
+        th,td {
+            border: 1px solid lightgray;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<div>
-    Camera Place &nbsp;
-    <button onclick="helper.MoveCamera('x',-100)">Left</button>
-    <button onclick="helper.MoveCamera('x',100)">Right</button>
-    <button onclick="helper.MoveCamera('y',100)">Up</button>
-    <button onclick="helper.MoveCamera('y',-100)">Down</button>
-    <button onclick="helper.MoveCamera('z',-100)">Near</button>
-    <button onclick="helper.MoveCamera('z',100)">Far</button>
-    &nbsp; | Look At &nbsp;
-    <button onclick="helper.MoveLookDirection('x',-10)">Left</button>
-    <button onclick="helper.MoveLookDirection('x',10)">Right</button>
-    <button onclick="helper.MoveLookDirection('y',10)">Up</button>
-    <button onclick="helper.MoveLookDirection('y',-10)">Down</button>
-    <button onclick="helper.MoveLookDirection('z',-10)">Near</button>
-    <button onclick="helper.MoveLookDirection('z',10)">Far</button>
-</div>
+    <div>
+        <div>
+            <table>
+                <tr>
+                    <th>
+                        Camera
+                        (
+                            <span id='camera_x'></span>
+                            ,
+                            <span id='camera_y'></span>
+                            ,
+                            <span id='camera_z'></span>
+                        )
+                    </th>
+                    <th>
+                        Look At
+                        (
+                            <span id='look_at_x'></span>
+                            ,
+                            <span id='look_at_y'></span>
+                            ,
+                            <span id='look_at_z'></span>
+                        )
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="2"><button onclick="helper.MoveCamera('y',100)">Up</button></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><button onclick="helper.MoveCamera('x',-100)">Left</button></td>
+                                <td>
+                                    <button onclick="helper.MoveCamera('z',-100)">Near</button>
+                                </td>
+                                <td>
+                                    <button onclick="helper.MoveCamera('z',100)">Far</button>
+                                </td>
+                                <td><button onclick="helper.MoveCamera('x',100)">Right</button></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="2"><button onclick="helper.MoveCamera('y',-100)">Down</button></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="2"><button onclick="helper.MoveLookDirection('y',10)">Up</button></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td><button onclick="helper.MoveLookDirection('x',-10)">Left</button></td>
+                                <td>
+                                    <button onclick="helper.MoveLookDirection('z',-10)">Near</button>
+                                </td>
+                                <td>
+                                    <button onclick="helper.MoveLookDirection('z',10)">Far</button>
+                                </td>
+                                <td><button onclick="helper.MoveLookDirection('x',10)">Right</button></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td colspan="2"><button onclick="helper.MoveLookDirection('y',-10)">Down</button></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- <div>
+            Camera Place &nbsp;
+            <button onclick="helper.MoveCamera('x',-100)">Left</button>
+            <button onclick="helper.MoveCamera('x',100)">Right</button>
+            <button onclick="helper.MoveCamera('y',100)">Up</button>
+            <button onclick="helper.MoveCamera('y',-100)">Down</button>
+            <button onclick="helper.MoveCamera('z',-100)">Near</button>
+            <button onclick="helper.MoveCamera('z',100)">Far</button>
+        </div>
+        <div>
+            Look At &nbsp;
+            <button onclick="helper.MoveLookDirection('x',-10)">Left</button>
+            <button onclick="helper.MoveLookDirection('x',10)">Right</button>
+            <button onclick="helper.MoveLookDirection('y',10)">Up</button>
+            <button onclick="helper.MoveLookDirection('y',-10)">Down</button>
+            <button onclick="helper.MoveLookDirection('z',-10)">Near</button>
+            <button onclick="helper.MoveLookDirection('z',10)">Far</button>
+        </div> -->
+    </div>
 <script>
     // init();
     // animate();
     let helper=new ThreeHelper();
+    
+    helper.MoveCameraCallback=function(position){
+        document.getElementById('camera_x').innerText=position.x;
+        document.getElementById('camera_y').innerText=position.y;
+        document.getElementById('camera_z').innerText=position.z;
+    }
+    helper.MoveLookDirectionCallback=function(position){
+        document.getElementById('look_at_x').innerText=position.x;
+        document.getElementById('look_at_y').innerText=position.y;
+        document.getElementById('look_at_z').innerText=position.z;
+    }
+
+    helper.MoveCamera('x',0);
+    helper.MoveLookDirection('x',0);
+
     kitchen();
 </script>
 </body>

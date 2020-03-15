@@ -1,8 +1,7 @@
 function kitchen(){
-    helper.addLine(new THREE.Vector3(-10000, 0, 0),new THREE.Vector3(10000, 0, 0),helper.createMaterialByColor(0xFFFFFF));
-    helper.addLine(new THREE.Vector3(0, -10000, 0),new THREE.Vector3(0, 10000, 0),helper.createMaterialByColor(0xFFFFFF));
-    helper.addLine(new THREE.Vector3(0, 0, -10000),new THREE.Vector3(0, 0, 10000),helper.createMaterialByColor(0xFFFFFF));
-    // helper.addCube(1000,1000,1000,0,0,0);
+    // helper.addLine(new THREE.Vector3(-10000, 0, 0),new THREE.Vector3(10000, 0, 0),helper.createMaterialByColor(0xFFFFFF));
+    // helper.addLine(new THREE.Vector3(0, -10000, 0),new THREE.Vector3(0, 10000, 0),helper.createMaterialByColor(0xFFFFFF));
+    // helper.addLine(new THREE.Vector3(0, 0, -10000),new THREE.Vector3(0, 0, 10000),helper.createMaterialByColor(0xFFFFFF));
 
     //let wallMaterial=helper.createMaterialByTexture('textures/rin.jpg');
     //helper.createMaterialByColor(0xdddddd);

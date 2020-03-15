@@ -18,7 +18,7 @@ function ThreeHelper() {
         this.material = new THREE.MeshNormalMaterial();
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
-        this.renderer.setSize(window.innerWidth-40, window.innerHeight-80);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
 
         this.Render();
@@ -29,17 +29,28 @@ function ThreeHelper() {
         console.log("Rendered");
     };
 
+    this.MoveCameraCallback=null;
+
     this.MoveCamera=function(key,diff){
         this.camera.position[key]+=diff;
         this.Render();
         console.log('MoveCamera',key+'='+this.camera.position[key]);
+        if(this.MoveCameraCallback){
+            this.MoveCameraCallback(this.camera.position);
+        }
     }
+
+    this.MoveLookDirectionCallback=null;
 
     this.LookAt=function(x,y,z){
         this.lookAtDirection.x=x;
         this.lookAtDirection.y=y;
         this.lookAtDirection.z=z;
         this.camera.lookAt(this.lookAtDirection.x,this.lookAtDirection.y,this.lookAtDirection.z);
+        this.Render();
+        if(this.MoveLookDirectionCallback){
+            this.MoveLookDirectionCallback(this.lookAtDirection);
+        }
     }
 
     this.MoveLookDirection=function(key,diff){
@@ -47,6 +58,9 @@ function ThreeHelper() {
         this.camera.lookAt(this.lookAtDirection.x,this.lookAtDirection.y,this.lookAtDirection.z);
         this.Render();
         console.log('MoveLookDirection',key+'='+this.lookAtDirection[key]);
+        if(this.MoveLookDirectionCallback){
+            this.MoveLookDirectionCallback(this.lookAtDirection);
+        }
     }
 
     this.addSpotLight=function(lightColor,x,y,z){
