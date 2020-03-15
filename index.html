@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/three/build/three.min.js"></script>
+    <script src="js/ThreeHelper.js"></script>
+    <script src="js/kitchen.js"></script>
+</head>
+<body>
+<div>
+    Camera Place &nbsp;
+    <button onclick="helper.MoveCamera('x',-100)">Left</button>
+    <button onclick="helper.MoveCamera('x',100)">Right</button>
+    <button onclick="helper.MoveCamera('y',100)">Up</button>
+    <button onclick="helper.MoveCamera('y',-100)">Down</button>
+    <button onclick="helper.MoveCamera('z',-100)">Near</button>
+    <button onclick="helper.MoveCamera('z',100)">Far</button>
+    &nbsp; | Look At &nbsp;
+    <button onclick="helper.MoveLookDirection('x',-10)">Left</button>
+    <button onclick="helper.MoveLookDirection('x',10)">Right</button>
+    <button onclick="helper.MoveLookDirection('y',10)">Up</button>
+    <button onclick="helper.MoveLookDirection('y',-10)">Down</button>
+    <button onclick="helper.MoveLookDirection('z',-10)">Near</button>
+    <button onclick="helper.MoveLookDirection('z',10)">Far</button>
+</div>
+<script>
+    // init();
+    // animate();
+    let helper=new ThreeHelper();
+    kitchen();
+</script>
+</body>
+</html>
